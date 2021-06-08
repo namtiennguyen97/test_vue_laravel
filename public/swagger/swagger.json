@@ -1,0 +1,372 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "title": "Laravel Project",
+        "description": "M\u1eabu t\u00edch h\u1ee3p Swagger + Jwt cho api, email: lucnn@ttc-solutions.com, phone: 0961196368",
+        "termsOfService": "",
+        "contact": {
+            "email": "lucnn@ttc-solutions.com"
+        },
+        "version": "1.0.0"
+    },
+    "host": "localhost:8000",
+    "basePath": "/",
+    "schemes": [
+        "http"
+    ],
+    "paths": {
+        "/api/auth/login": {
+            "post": {
+                "tags": [
+                    "Auth"
+                ],
+                "description": "Login",
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "properties": {
+                                "email": {
+                                    "required": true,
+                                    "type": "string"
+                                },
+                                "password": {
+                                    "required": true,
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "\u0110\u0103ng nh\u1eadp l\u1ea5y token",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "statusCode": {
+                                    "type": "integer",
+                                    "default": 200
+                                },
+                                "data": {
+                                    "properties": {
+                                        "access_token": {
+                                            "type": "string"
+                                        },
+                                        "token_type": {
+                                            "type": "string"
+                                        },
+                                        "expires_in": {
+                                            "type": "integer"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    },
+                    "422": {
+                        "description": "Missing Data"
+                    }
+                }
+            }
+        },
+        "/api/auth/detail": {
+            "get": {
+                "tags": [
+                    "Auth"
+                ],
+                "description": "Get Infor",
+                "responses": {
+                    "200": {
+                        "description": "L\u1ea5y th\u00f4ng tin user",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "statusCode": {
+                                    "type": "integer",
+                                    "default": 200
+                                },
+                                "data": {
+                                    "properties": {
+                                        "access_token": {
+                                            "type": "string"
+                                        },
+                                        "token_type": {
+                                            "type": "string"
+                                        },
+                                        "expires_in": {
+                                            "type": "integer"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    },
+                    "422": {
+                        "description": "Missing Data"
+                    }
+                },
+                "security": [
+                    {
+                        "http_bearer_auth": []
+                    }
+                ]
+            }
+        },
+        "/api/post/create": {
+            "post": {
+                "tags": [
+                    "Post"
+                ],
+                "description": "T\u1ea1o b\u00e0i vi\u1ebft",
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "properties": {
+                                "title": {
+                                    "required": true,
+                                    "type": "string"
+                                },
+                                "body": {
+                                    "required": true,
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Info",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "statusCode": {
+                                    "type": "integer",
+                                    "default": 200
+                                },
+                                "data": {
+                                    "properties": {
+                                        "id": {
+                                            "type": "integer"
+                                        },
+                                        "name": {
+                                            "type": "string"
+                                        },
+                                        "email": {
+                                            "type": "string"
+                                        },
+                                        "created_at": {
+                                            "type": "string"
+                                        },
+                                        "updated_at": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    },
+                    "422": {
+                        "description": "Missing Data"
+                    }
+                }
+            }
+        },
+        "/api/post/detail": {
+            "get": {
+                "tags": [
+                    "Post"
+                ],
+                "description": "Return a user's first and last name",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "query",
+                        "description": "Your first name",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "422": {
+                        "description": "Missing Data"
+                    }
+                }
+            }
+        },
+        "/api/post/update": {
+            "put": {
+                "tags": [
+                    "Post"
+                ],
+                "description": "Return a user's first and last name",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "query",
+                        "description": "Your first name",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "properties": {
+                                "title": {
+                                    "required": true,
+                                    "type": "string"
+                                },
+                                "body": {
+                                    "required": true,
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Info",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "statusCode": {
+                                    "type": "integer",
+                                    "default": 200
+                                }
+                            },
+                            "type": "object"
+                        }
+                    },
+                    "422": {
+                        "description": "Missing Data"
+                    }
+                }
+            }
+        },
+        "/api/post/delete": {
+            "delete": {
+                "tags": [
+                    "Post"
+                ],
+                "description": "Return a user's first and last name",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "query",
+                        "description": "Your first name",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "422": {
+                        "description": "Missing Data"
+                    }
+                }
+            }
+        },
+        "/api/user/create": {
+            "post": {
+                "tags": [
+                    "User"
+                ],
+                "description": "T\u1ea1o t\u00e0i kho\u1ea3n m\u1eabu",
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "properties": {
+                                "name": {
+                                    "required": true,
+                                    "type": "string"
+                                },
+                                "email": {
+                                    "required": true,
+                                    "type": "string"
+                                },
+                                "password": {
+                                    "required": true,
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Info",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "statusCode": {
+                                    "type": "integer",
+                                    "default": 200
+                                },
+                                "data": {
+                                    "properties": {
+                                        "name": {
+                                            "type": "string"
+                                        },
+                                        "email": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    },
+                    "422": {
+                        "description": "Missing Data"
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {},
+    "securityDefinitions": {
+        "http_bearer_auth": {
+            "type": "apiKey",
+            "name": "Authorization",
+            "in": "header"
+        }
+    }
+}
